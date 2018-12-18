@@ -6,7 +6,7 @@
 /*   By: rsaleh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 16:29:57 by rsaleh            #+#    #+#             */
-/*   Updated: 2018/12/18 11:53:21 by rsaleh           ###   ########.fr       */
+/*   Updated: 2018/12/18 15:34:49 by rsaleh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int	main(int ac, char **av)
 {
+	char *s = "salut";
 	ac = 0;
-	ft_printf("%p", 42);
-	//printf("%o", 4294967294);
+	printf("%p\n", s);
+	ft_printf("%p", s);
 	return (0);	
 }
