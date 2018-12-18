@@ -6,14 +6,14 @@
 /*   By: rsaleh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 14:41:14 by rsaleh            #+#    #+#             */
-/*   Updated: 2018/12/18 15:42:14 by rsaleh           ###   ########.fr       */
+/*   Updated: 2018/12/18 17:00:40 by rsaleh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../libft/includes/libft.h"
 #include "../printf.h"
 #include <stdio.h>
 
-char	*ft_printf_itoa_base(uintmax_t nb, int base)
+char	*ft_printf_itoa_base(uintmax_t nb, int base, char c)
 {
 	int		i;
 	char	*ret;
@@ -25,7 +25,7 @@ char	*ft_printf_itoa_base(uintmax_t nb, int base)
 	ret = ft_strnew(i);
 	while (i-- > 0)
 	{
-		ret[i] = (nb % base) + (nb % base > 9 ? 'a' - 10 : '0');
+		ret[i] = (nb % base) + (nb % base > 9 ? c - 10 : '0');
 		nb /= base;
 	}
 	if (*ret == '0' && ret[1])

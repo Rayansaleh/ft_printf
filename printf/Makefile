@@ -6,7 +6,7 @@
 #    By: rsaleh <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/17 18:46:37 by rsaleh            #+#    #+#              #
-#    Updated: 2018/12/17 20:23:28 by rsaleh           ###   ########.fr        #
+#    Updated: 2018/12/18 15:17:23 by rsaleh           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME	=	libftprintf.a
 OBJDIR	=	obj/
 SRCDIR	=	srcs/
 FILES	=	printf.c \
-			convert.c
+			convert.c \
+			char_conv.c
 INCLUDE	=	includes/
 SRC		=	$(addprefix $(SRCDIR), $(FILES))
 OBJ		=	$(addprefix $(OBJDIR), $(patsubst %.c, %.o, $(notdir $(FILES))))
