@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printfloat.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rsaleh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/17 16:29:57 by rsaleh            #+#    #+#             */
-/*   Updated: 2018/12/19 21:02:36 by rsaleh           ###   ########.fr       */
+/*   Created: 2018/12/19 19:24:35 by rsaleh            #+#    #+#             */
+/*   Updated: 2018/12/19 21:02:28 by rsaleh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "includes/libft.h"
+#include <stdio.h>
 
-#include "../printf.h"
-
-int	main(int ac, char **av)
+void	ft_printfloat(double nb, unsigned int i)
 {
-	ac = 0;
-	printf("%.7f\n", 464.35564);
-	ft_printf("%f", 464.35564);
-	return (0);	
+	int tmp;
+	
+	tmp = (int)nb;
+	ft_putnbr(tmp);
+	nb -= tmp;
+	if (i > 0)
+		write(1, ".", 1);
+	while (i > 0)
+	{
+		nb *= 10;
+		tmp = (int)nb;
+		ft_putnbr(tmp);
+		nb -= tmp;
+		i--;
+	}
 }

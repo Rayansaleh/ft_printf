@@ -6,7 +6,7 @@
 /*   By: rsaleh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 17:09:16 by rsaleh            #+#    #+#             */
-/*   Updated: 2018/12/18 20:12:27 by rsaleh           ###   ########.fr       */
+/*   Updated: 2018/12/19 19:53:09 by rsaleh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,32 @@
 #include "../printf.h"
 #include <stdio.h>
 
-/*uintmax_t	signed_int_flag(char flag, va_list arg)
+intmax_t	signed_int_flag(int flag, va_list arg)
 {
-	if (flag == 'h')
-		return ((short int)va_arg(ap, int));
-	else if (flag == 'l')
-		return (va_arg(ap, long int));
-	else if (flag == 'i')
-		return ((char)va_arg(ap, int));
-	else if (flag == 'j')
-		return (va_arg(ap, long long int);
+	if (flag == 1)
+		return ((short int)va_arg(arg, int));
+	else if (flag == 2)
+		return (va_arg(arg, long int));
+	else if (flag == -1)
+		return ((char)va_arg(arg, int));
+	else if (flag == -2)
+		return (va_arg(arg, long long int));
+	return (va_arg(arg, int));
 }
 
-uintmax_t	unsigned_int_flag(char flag, va_list arg)
+uintmax_t	unsigned_int_flag(int flag, va_list arg)
 {
-	if (flag == 'h')
-		return ((unsigned short int)va_arg(ap, int));
-	else if (flag == 'l')
-		return (va_arg(ap, unsigned long int));
-	else if (flag == 'i')
-		return ((unsigned char)va_arg(ap, int));
-	else if (flag == 'j')
-		return (va_arg(ap, unsigned long long int);
+	if (flag == 1)
+		return ((unsigned short int)va_arg(arg, int));
+	else if (flag == 2)
+		return (va_arg(arg, unsigned long int));
+	else if (flag == -1)
+		return ((unsigned char)va_arg(arg, int));
+	else if (flag == -2)
+		return (va_arg(arg, unsigned long long int));
+	return (va_arg(arg, unsigned int));
 }
-*/
+
 void	int_converter(int arg, char format)
 {
 	if (format == 'c')

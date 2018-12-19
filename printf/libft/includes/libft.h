@@ -6,7 +6,7 @@
 /*   By: rsaleh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 19:37:52 by rsaleh            #+#    #+#             */
-/*   Updated: 2018/12/18 14:49:52 by rsaleh           ###   ########.fr       */
+/*   Updated: 2018/12/19 20:28:33 by rsaleh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ char				*ft_itoa_base(int num, char *str, int base);
 void				ft_strrev(char *str, int length);
 void				ft_charswap(char c1, char c2);
 uintmax_t			ft_power(uintmax_t nb, int power);
+void				ft_printfloat(double nb, unsigned int i);
 
 #endif
