@@ -6,7 +6,7 @@
 /*   By: rsaleh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 17:09:16 by rsaleh            #+#    #+#             */
-/*   Updated: 2018/12/19 19:53:09 by rsaleh           ###   ########.fr       */
+/*   Updated: 2018/12/22 21:04:02 by rsaleh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,30 @@ void	convert_to_hexa(void *arg)
 	ft_putstr(hexa);
 }
 
-void	unsigned_int_converter(unsigned int arg, char format)
+void	unsigned_int_converter(char other_flag, unsigned int arg, char format)
 {
 	char *ret;
 
 	ret = NULL;
 	if (format == 'o')
+	{
+		if (other_flag == '#' && arg != 0)
+			ft_putchar('0');
 		ret = ft_printf_itoa_base(arg, 8, 'a');
+	}
 	else if (format == 'u')
 		ret = ft_printf_itoa_base(arg, 10, 'a');
 	else if (format == 'x')
+	{
+		if (other_flag == '#')
+			ft_putstr("0x");
 		ret = ft_printf_itoa_base(arg, 16, 'a');
+	}
 	else if (format == 'X')
+	{
+		if (other_flag == '#')
+			ft_putstr("0X");
 		ret = ft_printf_itoa_base(arg, 16, 'A');
+	}
 	ft_putstr(ret);
 }
