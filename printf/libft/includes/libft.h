@@ -6,7 +6,7 @@
 /*   By: rsaleh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 19:37:52 by rsaleh            #+#    #+#             */
-/*   Updated: 2018/12/19 20:28:33 by rsaleh           ###   ########.fr       */
+/*   Updated: 2019/01/08 21:08:04 by rsaleh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,7 @@ void				ft_strrev(char *str, int length);
 void				ft_charswap(char c1, char c2);
 uintmax_t			ft_power(uintmax_t nb, int power);
 void				ft_printfloat(double nb, unsigned int i);
+char				*ft_realloc(char *src, size_t new_size);
+int					ft_strichr(char *s, int c, int i);
 
 #endif

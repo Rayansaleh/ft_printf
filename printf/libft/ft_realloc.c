@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rsaleh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/09 21:55:58 by rsaleh            #+#    #+#             */
-/*   Updated: 2019/01/06 17:32:08 by rsaleh           ###   ########.fr       */
+/*   Created: 2019/01/06 17:32:22 by rsaleh            #+#    #+#             */
+/*   Updated: 2019/01/06 17:34:30 by rsaleh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "./includes/libft.h"
 #include <stdio.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_realloc(char *src, size_t new_size)
 {
-	char	*ptr;
-	int		i;
-	int		j;
+	char	*tmp;
 
-	if (!s1 || !s2)
+	if (!(tmp = (char *)malloc(sizeof(char) * (ft_strlen(src) + 1))))
 		return (NULL);
-	i = 0;
-	j = -1;
-	if ((ptr = (char *)malloc(sizeof(char) * (ft_strlen(s1) + \
-						ft_strlen(s2) + 1))))
-	{
-		while (s1[++j])
-			ptr[j] = s1[j];
-		while (s2[i])
-			ptr[j++] = s2[i++];
-		ptr[j] = '\0';
-	}
-	return (ptr);
+	ft_strcpy(tmp, src);
+	free(src);
+	if (!(src = (char *)malloc(sizeof(char) * new_size)))
+		return (NULL);
+	src[new_size - 1] = '\0';
+	ft_strcpy(src, tmp);
+	free(tmp);
+	return (src);
 }

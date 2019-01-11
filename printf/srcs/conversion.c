@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   conversion.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rsaleh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/09 21:55:58 by rsaleh            #+#    #+#             */
-/*   Updated: 2019/01/06 17:32:08 by rsaleh           ###   ########.fr       */
+/*   Created: 2018/12/28 16:06:34 by rsaleh            #+#    #+#             */
+/*   Updated: 2019/01/11 21:44:40 by rsaleh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "../printf.h"
+#include "../libft/includes/libft.h"
 #include <stdio.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int	ft_is_arg(t_printf *pf)
 {
-	char	*ptr;
-	int		i;
-	int		j;
-
-	if (!s1 || !s2)
-		return (NULL);
-	i = 0;
-	j = -1;
-	if ((ptr = (char *)malloc(sizeof(char) * (ft_strlen(s1) + \
-						ft_strlen(s2) + 1))))
-	{
-		while (s1[++j])
-			ptr[j] = s1[j];
-		while (s2[i])
-			ptr[j++] = s2[i++];
-		ptr[j] = '\0';
-	}
-	return (ptr);
+	if (*pf->format == 'd' || *pf->format == 'i' || *pf->format == 'o' ||
+			*pf->format == 'x' || *pf->format == 'X' || *pf->format == 'u' ||
+			*pf->format == 's' || *pf->format == 'p' || *pf->format == 'c' ||
+			*pf->format == 'f')
+		return (1);
+	return (0);
 }
