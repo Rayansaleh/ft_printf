@@ -6,10 +6,10 @@
 /*   By: rsaleh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 14:17:18 by rsaleh            #+#    #+#             */
-/*   Updated: 2019/01/11 21:13:50 by rsaleh           ###   ########.fr       */
+/*   Updated: 2019/01/16 16:58:55 by rsaleh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+
 #include "../libft/includes/libft.h"
 #include "../printf.h"
 
@@ -62,6 +62,8 @@ void	ft_conversion(t_printf *pf)
 		printf_putnbr(pf);
 	else if (*pf->format == 'o')
 		printf_putunbr(8, pf);
+	else if (*pf->format == 'u')
+		printf_putunbr(10, pf);
 	else if (*pf->format == 'x' || *pf->format == 'X')
 		printf_putunbr(16, pf);
 	else if (*pf->format == 's')
@@ -70,6 +72,8 @@ void	ft_conversion(t_printf *pf)
 		printf_putaddr(pf);
 	else if (*pf->format == 'c')
 		printf_putchar(pf);
+	else
+		no_valid_arg(pf);
 }
 
 void	get_flag(t_printf *pf)
@@ -78,7 +82,7 @@ void	get_flag(t_printf *pf)
 	pf->width = 0;
 	pf->precision = 1;
 	pf->finalsize = 0;
-	while (ft_is_arg(pf) == 0)
+	while (*pf->format != '%' && ft_is_arg(pf) == 0 && ft_is_flag(pf) == 1)
 	{
 		get_format_flag(pf);
 		get_width_precision(pf);

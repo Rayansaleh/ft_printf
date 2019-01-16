@@ -6,17 +6,19 @@
 /*   By: rsaleh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 17:30:14 by rsaleh            #+#    #+#             */
-/*   Updated: 2019/01/11 21:44:36 by rsaleh           ###   ########.fr       */
+/*   Updated: 2019/01/16 17:17:28 by rsaleh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../printf.h"
 #include "../libft/includes/libft.h"
-#include <stdio.h>
 
 void	printf_putnbr(t_printf *pf)
 {
-	intmax_t nb;
+	intmax_t	nb;
+	int			len;
 
+	len = 0;
 	if (pf->ff & SHORT)
 		nb = (short)va_arg(pf->ap, int);
 	else if (pf->ff & CHAR)
@@ -28,7 +30,7 @@ void	printf_putnbr(t_printf *pf)
 	else
 		nb = va_arg(pf->ap, int);
 	(pf->ff & ZERO) ? pf->precision = pf->width : 0;
-	ft_printf_itoa(nb, pf);
+	ft_printf_itoa(nb, len, pf);
 }
 
 void	printf_putunbr(int base, t_printf *pf)
@@ -45,7 +47,7 @@ void	printf_putunbr(int base, t_printf *pf)
 		nb = va_arg(pf->ap, unsigned long long);
 	else
 		nb = va_arg(pf->ap, unsigned int);
-	ft_printf_itoa_base(nb, pf, base);
+	ft_printf_itoa_base(nb, nb, pf, base);
 }
 
 void	printf_putstr(t_printf *pf)
@@ -53,14 +55,18 @@ void	printf_putstr(t_printf *pf)
 	char	*str;
 	int		size;
 
-	str = va_arg(pf->ap, char*);
-	size = ft_strlen(str);
-	(pf->ff & ISPRECI) ? size = (pf->precision & (pf->precision - size)
-					>> 31) | (size & (~(pf->precision - size) >> 31)) : 0;
-	pf->width = (pf->width - size) > 0 ? (pf->width - size) : 0;
-	put_width(pf, 0);
-	create_buffer(str, size, pf);
-	put_width(pf, 1);
+	if (!(str = va_arg(pf->ap, char*)))
+		create_buffer("(null)", 6, pf);
+	else
+	{
+		size = ft_strlen(str);
+		(pf->ff & ISPRECI) ? size = (pf->precision & (pf->precision - size)
+				>> 31) | (size & (~(pf->precision - size) >> 31)) : 0;
+		pf->width = (pf->width - size) > 0 ? (pf->width - size) : 0;
+		put_width(pf, 0);
+		create_buffer(str, size, pf);
+		put_width(pf, 1);
+	}
 }
 
 void	printf_putaddr(t_printf *pf)
@@ -73,7 +79,7 @@ void	printf_putaddr(t_printf *pf)
 		pf->width - pf->finalsize;
 	pf->ff |= DIEZ;
 	pf->ff |= ISADDRESS;
-	ft_printf_itoa_base((uintmax_t)str, pf, 16);
+	ft_printf_itoa_base((uintmax_t)str, (uintmax_t)str, pf, 16);
 }
 
 void	printf_putchar(t_printf *pf)
@@ -83,8 +89,7 @@ void	printf_putchar(t_printf *pf)
 	tmp[0] = va_arg(pf->ap, int);
 	pf->width = pf->width - (pf->finalsize + 1);
 	(pf->width < 0) ? pf->width = 0 : 0;
-	printf("width:%d\n", pf->width);
 	put_width(pf, 0);
 	create_buffer(tmp, 1, pf);
-   put_width(pf, 1);	
+	put_width(pf, 1);
 }

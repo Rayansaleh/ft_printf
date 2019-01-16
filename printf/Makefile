@@ -6,7 +6,7 @@
 #    By: rsaleh <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/17 18:46:37 by rsaleh            #+#    #+#              #
-#    Updated: 2019/01/10 17:56:37 by rsaleh           ###   ########.fr        #
+#    Updated: 2019/01/15 17:27:54 by rsaleh           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,6 @@ OBJDIR	=	obj/
 SRCDIR	=	srcs/
 FILES	=	printf.c \
 			flag.c \
-			conversion.c \
 			converter.c \
 			convert.c
 INCLUDE	=	includes/

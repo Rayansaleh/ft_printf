@@ -6,7 +6,7 @@
 /*   By: rsaleh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 16:32:04 by rsaleh            #+#    #+#             */
-/*   Updated: 2019/01/11 21:13:58 by rsaleh           ###   ########.fr       */
+/*   Updated: 2019/01/16 17:01:36 by rsaleh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	create_buffer(void *newbuff, size_t size, t_printf *pf)
 {
-	intmax_t 	i;
+	intmax_t	i;
 	int			tmp;
 
 	i = 0;
@@ -67,7 +67,7 @@ int		ft_printf(const char *format, ...)
 		{
 			++pf.format;
 			if (*pf.format)
-				get_flag(&pf);;
+				get_flag(&pf);
 		}
 		else
 			create_buffer(pf.format, 1, &pf);
@@ -75,5 +75,18 @@ int		ft_printf(const char *format, ...)
 	}
 	write(1, pf.buff, pf.buffi);
 	va_end(pf.ap);
-	return(pf.len);
+	return (pf.len);
+}
+
+void	no_valid_arg(t_printf *pf)
+{
+	pf->width -= 1;
+	if (pf->width > 0)
+	{
+		put_width(pf, 0);
+		create_buffer(pf->format, 1, pf);
+		put_width(pf, 1);
+		return ;
+	}
+	create_buffer(pf->format, 1, pf);
 }
